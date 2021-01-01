@@ -1,0 +1,31 @@
+@import "main.css";
+@import "side.css";
+@import "image.css";
+
+body {
+    margin: 0px;
+    overflow: hidden;
+}
+
+.container {
+    display: grid;
+    grid-template-rows: 12vh 80vh 8vh;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas:
+    "hd hd hd"
+    "sd main main"
+    "ft ft ft";
+}
+
+@media(max-width: 901px) {
+    .container {
+        display: grid;
+        grid-template-rows: 12vh 10vh 70vh 8vh;
+        grid-template-columns: 1fr;
+        grid-template-areas:
+        "hd"
+        "sd"
+        "main"
+        "ft";
+    }
+}

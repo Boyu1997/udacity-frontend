@@ -1,0 +1,34 @@
+.side {
+    grid-area: sd;
+    background-color: #eee;
+    padding: 16px;
+}
+
+.side a {
+    text-decoration: none;
+    display: block;
+    margin: 24px;
+    font-size: 1.2em;
+}
+
+@media(max-width: 901px) {
+    .side {
+        grid-area: sd;
+        background-color: #eee;
+        padding: 16px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .side a {
+        text-decoration: none;
+        display: inline-block;
+        margin: 12px;
+        font-size: 1em;
+    }
+
+    .side hr {
+        display: none;
+    }
+}
