@@ -16,21 +16,20 @@
     overflow: auto;
 }
 
-.main .author-info {
-    margin: 20px;
+.main h2 {
+    display: inline;
 }
 
-.main .author-info h3 {
-    margin-block-start: 0em;
-    margin-block-end: 0em;
+.main strong {
+    color: #c33;
 }
 
-.main .author-info p {
-    margin-block-start: 0em;
-    margin-block-end: 0em;
-    font-size: 0.8em;
-    font-style: italic;
-    color: #333;
+.main u {
+    color: #3c6;
+}
+
+.main em {
+    color: #63c;
 }
 
 @media(max-width: 901px) {
