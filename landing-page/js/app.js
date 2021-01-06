@@ -25,6 +25,13 @@
  * 
 */
 
+function resetAllActives() {
+    const allActives = document.querySelectorAll('.your-active-class');
+    allActives.forEach((active) => {
+        active.className = '';
+    });
+}
+
 
 
 /**
@@ -34,6 +41,22 @@
 */
 
 // build the nav
+
+const nav = document.querySelector('#navbar__list');
+const sections = document.querySelectorAll('section');
+
+sections.forEach((section) => {
+    console.log(section);
+
+    const navItemLink = document.createElement('a');
+    navItemLink.className = 'menu__link';
+    navItemLink.setAttribute('target-section-id', section.id)
+    navItemLink.textContent = section.getAttribute('data-nav');
+
+    const navItem = document.createElement('li')
+    navItem.appendChild(navItemLink);
+    nav.appendChild(navItem);
+});
 
 
 // Add class 'active' to section when near top of viewport
@@ -51,6 +74,20 @@
 // Build menu 
 
 // Scroll to section on link click
+
+const navItemLinks = document.querySelectorAll('.menu__link');
+
+navItemLinks.forEach((navItemLink) => {
+    navItemLink.addEventListener('click', () => {
+        const targetSectionId = navItemLink.getAttribute('target-section-id');
+        const targetSection = document.querySelector(`#${targetSectionId}`);
+        targetSection.scrollIntoView();
+
+        resetAllActives();
+        targetSection.className = 'your-active-class';
+    });
+});
+
 
 // Set sections as active
 
