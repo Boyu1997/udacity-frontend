@@ -26,9 +26,14 @@
 */
 
 function resetAllActives() {
-    const allActives = document.querySelectorAll('.your-active-class');
-    allActives.forEach((active) => {
-        active.className = '';
+    const activeSections = document.querySelectorAll('.active-section');
+    activeSections.forEach((activeSection) => {
+        activeSection.className = '';
+    });
+
+    const activeNavs = document.querySelectorAll('.active-nav');
+    activeNavs.forEach((activeNav) => {
+        activeNav.className = 'menu__link';
     });
 }
 
@@ -46,11 +51,10 @@ const nav = document.querySelector('#navbar__list');
 const sections = document.querySelectorAll('section');
 
 sections.forEach((section) => {
-    console.log(section);
-
     const navItemLink = document.createElement('a');
-    navItemLink.className = 'menu__link';
-    navItemLink.setAttribute('target-section-id', section.id)
+    navItemLink.className = section.className == 'active-section' ? 'menu__link active-nav' : 'menu__link';
+    navItemLink.setAttribute('id', `${section.id}-nav`);
+    navItemLink.setAttribute('target-section-id', section.id);
     navItemLink.textContent = section.getAttribute('data-nav');
 
     const navItem = document.createElement('li')
@@ -60,6 +64,20 @@ sections.forEach((section) => {
 
 
 // Add class 'active' to section when near top of viewport
+
+document.addEventListener('scroll', () => {
+    let activeSessionId = sections[sections.length-1].getAttribute('id');
+    let activeSessionSelected = false;
+    sections.forEach((session) => {
+        if (session.getBoundingClientRect()['y'] >= 0 && activeSessionSelected === false) {
+            activeSessionId = session.getAttribute('id');
+            activeSessionSelected = true;
+        }
+    });
+    resetAllActives();
+    document.querySelector(`#${activeSessionId}`).className = 'active-section';
+    document.querySelector(`#${activeSessionId}-nav`).className = 'menu__link active-nav';
+})
 
 
 // Scroll to anchor ID using scrollTO event
@@ -81,14 +99,9 @@ navItemLinks.forEach((navItemLink) => {
     navItemLink.addEventListener('click', () => {
         const targetSectionId = navItemLink.getAttribute('target-section-id');
         const targetSection = document.querySelector(`#${targetSectionId}`);
-        targetSection.scrollIntoView();
-
-        resetAllActives();
-        targetSection.className = 'your-active-class';
+        targetSection.scrollIntoView({behavior: "smooth"});
     });
 });
 
 
 // Set sections as active
-
-
