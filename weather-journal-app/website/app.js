@@ -1,6 +1,8 @@
 /* Global Variables */
 const localBaseUrl = "http://localhost:8000";
 const weatherBaseUrl = "https://api.openweathermap.org/data/2.5/weather?";
+// temporary API Key for project submission only
+// refers to openweathermap.org for getting an active API Key
 const weatherApiKey = "04444c138d8490ab802e6af6aae203f8";
 
 // Create a new date instance dynamically with JS
@@ -40,7 +42,7 @@ const postData = async (url = '', data = {}) => {
 // event listener for generate
 document.querySelector('#generate').addEventListener('click', () => {
     const zipcode = document.querySelector('#zip').value;
-    const weatherUrl = weatherBaseUrl + "zip=" + zipcode + "&appid=" + weatherApiKey;
+    const weatherUrl = weatherBaseUrl + "zip=" + zipcode + "&appid=" + weatherApiKey + "&units=imperial";
     getData(weatherUrl).then((data) => {
         postData(localBaseUrl + "/data", {
             temperature: data.main.temp,
@@ -48,7 +50,9 @@ document.querySelector('#generate').addEventListener('click', () => {
             userResponse: document.querySelector('#feelings').value,
         }).then(async() => {
             const projectData = await getData(localBaseUrl + "/data");
-            document.querySelector('#entryHolder').innerHTML = JSON.stringify(projectData);
+            document.querySelector('#date').innerHTML = projectData.temperature;
+            document.querySelector('#temp').innerHTML = projectData.date;
+            document.querySelector('#content').innerHTML = projectData.userResponse;
         });
     });
 })

@@ -33,15 +33,15 @@ let data = [];
 
 // GET route
 app.get('/data', (req, res) => {
-    res.send(data);
+    res.send(projectData);
 });
 
 // POST route
 app.post('/data', (req, res) => {
-    data.push({
+    projectData= {
         temperature: req.body.temperature,
         date: req.body.date,
         userResponse: req.body.userResponse,
-    });
+    };
     res.send({status: 200});
 });
