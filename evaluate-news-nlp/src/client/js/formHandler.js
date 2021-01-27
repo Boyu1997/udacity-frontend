@@ -3,11 +3,14 @@ function handleSubmit(event) {
 
     // check what text was put into the form field
     let formText = document.getElementById('name').value
-    checkForName(formText)
+    Client.checkForName(formText)
 
-    console.log("::: Form Submitted :::")
-    fetch('http://localhost:8080/test')
-    .then(res => res.json())
+    const txt = document.querySelector('#name').value
+    
+    fetch(`http://localhost:8081/data?txt=${txt}`)
+    .then(res => {
+        console.log(res)
+        res.json()})
     .then(function(res) {
         document.getElementById('results').innerHTML = res.message
     })
