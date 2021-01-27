@@ -30,7 +30,6 @@ app.get('/', function (req, res) {
 
 app.get('/data', async function (req, res) {
     const txt = req.query.txt
-    console.log(txt)
 
     const response = await fetch(
         `${baseUrl}?key=${process.env.API_KEY}&of=json&txt=${txt}&lang=en`,

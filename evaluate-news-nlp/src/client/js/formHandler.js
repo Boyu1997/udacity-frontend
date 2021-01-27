@@ -1,18 +1,20 @@
+const sentimentSet = {
+    'P+': 'strong positive',
+    'P': 'positive',
+    'NEU': 'neutral',
+    'N': 'negative',
+    'N+': 'strong negative',
+    'NONE': 'without sentiment',
+}
+
 function handleSubmit(event) {
     event.preventDefault()
 
-    // check what text was put into the form field
-    let formText = document.getElementById('name').value
-    Client.checkForName(formText)
-
-    const txt = document.querySelector('#name').value
-    
+    const txt = document.querySelector('#input').value
     fetch(`http://localhost:8081/data?txt=${txt}`)
-    .then(res => {
-        console.log(res)
-        res.json()})
-    .then(function(res) {
-        document.getElementById('results').innerHTML = res.message
+    .then(res => res.json())
+    .then(data => {
+        document.getElementById('results').innerHTML = sentimentSet[data.score_tag]
     })
 }
 
