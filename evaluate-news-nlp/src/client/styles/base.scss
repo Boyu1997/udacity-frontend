@@ -12,3 +12,24 @@ section {
     max-width: 800px;
     margin: 50px auto;
 }
+
+strong {
+    font-size: 1.2em;
+}
+
+#result {
+    margin: 12px;
+
+    .result-line {
+        display: flex;
+
+        div {
+            display: inline-block;
+        }
+
+        .result-name {
+            width: 30%;
+            font-style: italic;
+        }
+    };
+}
