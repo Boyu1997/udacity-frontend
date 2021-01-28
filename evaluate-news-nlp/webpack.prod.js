@@ -26,10 +26,12 @@ module.exports = {
     },
     plugins: [
         new HtmlWebPackPlugin({
+            // template: resolve(__dirname, 'src/client/views', 'index.html'),
             template: "./src/client/views/index.html",
             filename: "./index.html",
+            stats: { children: false },
         }),
         new WorkboxPlugin.GenerateSW(),
-        new MiniCssExtractPlugin({filename: '[name].css'})
+        new MiniCssExtractPlugin({filename: '[name].scss'})
     ]
 }
