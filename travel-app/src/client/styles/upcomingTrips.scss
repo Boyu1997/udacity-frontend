@@ -1,0 +1,37 @@
+#upcoming-trips {
+    margin-top: 32px;
+
+    #trips-container {
+        .trip-container {
+            display: flex;
+            background-color: whitesmoke;
+            margin: 24px 0px 24px 0px;
+
+            img {
+                width: 40%;
+            }
+
+            .trip-info-container {
+                width: 60%;
+                margin: 24px;
+
+                h3, h4, p {
+                    margin: 6px;
+                }
+
+                hr {
+                    margin-top: 12px;
+                    margin-bottom: 12px;
+                }
+            }
+            
+            button {
+                border: none;
+                background-color: silver;
+                color: white;
+                padding: 6px;
+                margin: 8px;
+            }
+        }
+    }
+}

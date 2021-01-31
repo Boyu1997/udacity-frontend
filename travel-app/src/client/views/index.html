@@ -6,29 +6,62 @@
     </head>
 
     <body>
-
         <header>
-            Travel App
+            <h1>Travel App</h1>
         </header>
 
         <main>
-            <section>
-                Upcoming Trips
-            </section>
+            <div id="main-container">
+                <section id="new-trip">
+                    <button>&#x2b; Add Trip</button>
+                    <div id="new-trip-form">
+                        <h3>New Trip</h3>
+                        <div class="input">
+                            <label for="city">City</label>
+                            <input type="text" id="city" placeholder="enter city name here">
+                        </div>
+                        <div class="input">
+                            <label for="date">Date</label>
+                            <input type="date" id="date">
+                        </div>
+                        <div>
+                            <button id="new-trip-form-submit" type="submit">Confirm</button>
+                            <button  id="new-trip-form-cancel">&#x2715; Cancel</button>
+                        </div>
+                    </div>
+                </section>
+                <section id="upcoming-trips">
+                    <h2>Upcoming Trips</h2>
+                    <div id="trips-container">
+                        <div class="trip-container">
+                            <img src="https://pixabay.com/get/g5129233fc08c813280e1df475192e47adb9938abdfc27a2a70da15790beef63e99f6acb1725117487127d5d27106ba46ac362366ebe572b57b9c3304cb6f7eb7_640.jpg">
+                            <div class="trip-info-container">
+                                <h3>My trip to: Paris</h3>
+                                <h3>Departing on: 2021-03-15</h3>
+                                <hr>
+                                <p><em>15 days away</em></p>
+                                <h4>Weather forecast:</h4>
+                                <p>high 12&#x2103;, low 3&#x2103;</p>
+                                <p>relative humidity 55&percnt;, precipitation none</p>
+                                <button>Remove Trip</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
         </main>
 
         <footer>
-            Footer
+            <p>Udacity Frontend Travel-App Project</p>
         </footer>
 
+        <script>
+            // webpack service worker config
+            if ('serviceWorker' in navigator) {
+                window.addEventListener('load', () => {
+                    navigator.serviceWorker.register('/service-worker.js');
+                });
+            }
+        </script>
     </body>
-
-    <script>
-        // webpack service worker config
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/service-worker.js');
-            });
-        }
-    </script>
 </html>

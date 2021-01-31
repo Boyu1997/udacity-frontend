@@ -1,0 +1,40 @@
+#new-trip {
+    button {
+        border: none;
+        background-color: navajowhite;
+        padding: 8px;
+        margin-left: 6px;
+    }
+
+    #new-trip-form {
+        display: none;
+        background-color: gainsboro;
+        margin: 10px 2px 10px 2px;
+        padding: 24px;
+        padding-left: 42px;
+
+        div {
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        label {
+            display: inline-block;
+            width: 50px;
+        }
+
+        input {
+            margin-left: 16px;
+            height: 1.8em;
+        }
+
+        button {
+            margin: 8px;
+        }
+
+        #new-trip-form-cancel {
+            background-color: silver;
+            color: white;
+        }
+    }
+}
