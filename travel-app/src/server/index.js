@@ -37,7 +37,7 @@ app.get('/', function (req, res) {
 
 app.get('/weather', async function (req, res) {
     const tripCity = req.query.city;
-    const tripDate = req.query.date;
+    const tripDate = moment(req.query.date, 'YYYY-MM-DD');
 
 
     // get city latitude and longitude from geonames api
@@ -54,7 +54,7 @@ app.get('/weather', async function (req, res) {
 
         // get weather data from weatherbit api
         // assumption: all datetime data from client and api are in UTC (or the same timezone)
-        const daysFromNow = moment(tripDate, 'YYYY-MM-DD').diff(moment(), 'days');
+        const daysFromNow = tripDate.diff(moment(), 'days');
         if (daysFromNow < 0) {
             res.send('error: cannot plan trip for the past');
         }
@@ -84,8 +84,8 @@ app.get('/weather', async function (req, res) {
                 estimate the weather; this is to avoid exceeding the api free quota or slowdown from too many api calls;
                 the better approach is to use the mean of all the previous year data of the month to generate a forecast */
 
-            const startDate = moment(tripDate, 'YYYY-MM-DD').subtract(1,'year').startOf('month').format('YYYY-MM-DD');
-            const endDate = moment(tripDate, 'YYYY-MM-DD').subtract(1,'year').endOf('month').format('YYYY-MM-DD');
+            const startDate = tripDate.subtract(1,'year').startOf('month').format('YYYY-MM-DD');
+            const endDate = tripDate.subtract(1,'year').endOf('month').format('YYYY-MM-DD');
 
             const weatherData = await Promise.all([startDate, endDate].map(date => {
                 return fetch(
@@ -126,7 +126,7 @@ app.get('/image', async function (req, res) {
     try {
         const pixabayApiData = await pixabayResponse.json();
         const imageUrl = pixabayApiData.hits[0].webformatURL;
-        res.send(imageUrl);
+        res.send({ imageUrl: imageUrl });
     } catch (error) {
         console.log('weatherbit api error', error);
         res.send(500);
