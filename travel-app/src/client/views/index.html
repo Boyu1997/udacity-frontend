@@ -3,6 +3,7 @@
     <head>
         <meta charset="utf-8">
         <title>Test</title>
+        <link rel="shortcut icon" href="#">
     </head>
 
     <body>
@@ -13,20 +14,20 @@
         <main>
             <div id="main-container">
                 <section id="new-trip">
-                    <button>&#x2b; Add Trip</button>
+                    <button onclick="Client.displayNewTripForm()">&#x2b; Add Trip</button>
                     <div id="new-trip-form">
                         <h3>New Trip</h3>
                         <div class="input">
-                            <label for="city">City</label>
-                            <input type="text" id="city" placeholder="enter city name here">
+                            <label for="city-input">City</label>
+                            <input type="text" id="city-input" placeholder="enter city name here">
                         </div>
                         <div class="input">
-                            <label for="date">Date</label>
-                            <input type="date" id="date">
+                            <label for="date-input">Date</label>
+                            <input type="date" id="date-input">
                         </div>
                         <div>
-                            <button id="new-trip-form-submit" type="submit">Confirm</button>
-                            <button  id="new-trip-form-cancel">&#x2715; Cancel</button>
+                            <button id="new-trip-form-submit" onclick="Client.createNewTrip()">Confirm</button>
+                            <button id="new-trip-form-cancel" onclick="Client.hideNewTripForm()">&#x2715; Cancel</button>
                         </div>
                     </div>
                 </section>
