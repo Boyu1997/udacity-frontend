@@ -54,6 +54,8 @@ export function createNewTrip() {
             }
             console.log(tripData);
 
+            Client.addTripToPage(tripData);
+
             Client.hideNewTripForm();
         })
     });
