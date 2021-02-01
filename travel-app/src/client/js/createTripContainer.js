@@ -1,6 +1,6 @@
 const moment = require('moment');
 
-export function addTripToPage(tripData) {
+export function createTripContainer(tripData) {
     // define image container
     const imageContainer = document.createElement('div');
     imageContainer.setAttribute('class', 'image-container');
@@ -43,7 +43,8 @@ export function addTripToPage(tripData) {
     // define trip container and add to trips
     const tripContainer = document.createElement('div');
     tripContainer.setAttribute('class', 'trip-container');
+    tripContainer.setAttribute('id', tripData.id);
     tripContainer.appendChild(imageContainer);
     tripContainer.appendChild(tripInfoContainer);
-    document.querySelector('#trips-container').appendChild(tripContainer);
+    return tripContainer;
 }

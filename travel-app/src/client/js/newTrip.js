@@ -15,6 +15,7 @@ export function hideNewTripForm() {
 export function createNewTrip() {
     const tripCity = document.querySelector('#city-input').value;
     const tripDate = document.querySelector('#date-input').value;
+    const daysToTripDate = moment(tripDate,'YYYY-MM-DD').diff(moment(), 'days');
 
     // validate trip city input
     const cityRegex = new RegExp("^[A-z0-9, ]+$");
@@ -24,7 +25,7 @@ export function createNewTrip() {
     }
 
     // validate trip date input
-    if (moment(tripDate,'YYYY-MM-DD').diff(moment(), 'days') < 0) {
+    if (daysToTripDate < 0) {
         alert("invalid date input: trip date cannot be a past date");
         return;
     }
@@ -44,6 +45,7 @@ export function createNewTrip() {
         ]).then(dataSet => {
             // build trip data object
             const tripData = {
+                id: `${tripDate}-${moment().format('X')}`,
                 date: tripDate,
                 cityName: geonameData.cityName,
                 countryCode: geonameData.countryCode,
@@ -52,11 +54,37 @@ export function createNewTrip() {
                 minTemp: dataSet[0].minTemp,
                 imageUrl: dataSet[1].imageUrl,
             }
-            console.log(tripData);
 
-            Client.addTripToPage(tripData);
+            // find position to and insert new trip
+            const storageTripDataSet = JSON.parse(localStorage.getItem('tripDataSet'));
+            let insertBeforeId = null;
+            for (const id in storageTripDataSet) {
+                if (daysToTripDate < moment(storageTripDataSet[id].date,'YYYY-MM-DD').diff(moment(), 'days')) {
+                    insertBeforeId = id;
+                    break;
+                }
+            }
 
+            const upcomingTripsContainer = document.querySelector('#upcoming-trips-container');
+            const newTripContainer = Client.createTripContainer(tripData);
+            if (insertBeforeId == null) {
+                upcomingTripsContainer.appendChild(newTripContainer);
+            }
+            else {
+                const insertBeforeTrip = document.getElementById(insertBeforeId);
+                upcomingTripsContainer.insertBefore(newTripContainer, insertBeforeTrip)
+            }
+
+            // cleanup input area
             Client.hideNewTripForm();
+
+            // update local storage
+            storageTripDataSet[tripData.id] = tripData;
+            const sortedTripDataSet = Object.keys(storageTripDataSet).sort().reduce((sorted, key) => {
+                sorted[key] = storageTripDataSet[key];
+                return sorted;
+            }, {});
+            localStorage.setItem('tripDataSet', JSON.stringify(sortedTripDataSet));
         })
     });
 }
