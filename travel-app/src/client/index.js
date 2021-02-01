@@ -1,5 +1,5 @@
 import { displayNewTripForm, hideNewTripForm, createNewTrip } from './js/newTrip';
-import { createTripContainer } from './js/createTripContainer';
+import { createTripContainer, removeTripContainer } from './js/tripContainer';
 
 import './styles/main.scss';
 import './styles/newTrip.scss';
@@ -29,5 +29,6 @@ export {
     displayNewTripForm,
     hideNewTripForm,
     createNewTrip,
-    createTripContainer
+    createTripContainer,
+    removeTripContainer
 };
