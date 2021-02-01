@@ -112,9 +112,9 @@ app.get('/weather', async function (req, res) {
                 avgWeatherData.minTemp += weatherbitApiData.data[0].min_temp;
                 avgWeatherData.avgHumidity += weatherbitApiData.data[0].rh;
             });
-            avgWeatherData.maxTemp /= 2;
-            avgWeatherData.minTemp /= 2;
-            avgWeatherData.avgHumidity /= 2;
+            avgWeatherData.maxTemp = (avgWeatherData.maxTemp / 2).toFixed(1);
+            avgWeatherData.minTemp = (avgWeatherData.minTemp / 2).toFixed(1);
+            avgWeatherData.avgHumidity = (avgWeatherData.avgHumidity / 2).toFixed(0);
             return avgWeatherData;
         });
         res.send(weatherData);

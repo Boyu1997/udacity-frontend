@@ -2,6 +2,14 @@
     margin-top: 32px;
 
     #upcoming-trips-container {
+        #trip-placeholder {
+            margin: 6px;
+            position: absolute;
+            z-index: -1;
+            color: lightslategray;
+            font-size: 1.15em;
+        }
+
         .trip-container {
             background-color: whitesmoke;
             margin: 24px 0px 24px 0px;
