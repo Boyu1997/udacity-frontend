@@ -32,6 +32,6 @@ module.exports = {
             stats: { children: false },
         }),
         new WorkboxPlugin.GenerateSW(),
-        new MiniCssExtractPlugin({filename: '[name].scss'})
+        new MiniCssExtractPlugin({ filename: "[name].css" })
     ]
 }
