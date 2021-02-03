@@ -134,3 +134,6 @@ app.get('/image', async function (req, res) {
         res.send(500);
     }
 });
+
+
+module.exports = app;
