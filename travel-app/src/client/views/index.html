@@ -2,6 +2,7 @@
 <html lang="en" dir="ltr">
     <head>
         <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Test</title>
         <link rel="shortcut icon" href="#">
     </head>
@@ -14,7 +15,7 @@
         <main>
             <div id="main-container">
                 <section id="new-trip">
-                    <button onclick="Client.displayNewTripForm()">&#x2b; Add Trip</button>
+                    <button id="new-trip-button">&#x2b; Add Trip</button>
                     <div id="new-trip-form">
                         <h3>New Trip</h3>
                         <div class="input">
@@ -26,8 +27,8 @@
                             <input type="date" id="date-input">
                         </div>
                         <div>
-                            <button id="new-trip-form-submit" onclick="Client.createNewTrip()">Confirm</button>
-                            <button id="new-trip-form-cancel" onclick="Client.hideNewTripForm()">&#x2715; Cancel</button>
+                            <button id="new-trip-form-submit">Confirm</button>
+                            <button id="new-trip-form-cancel">&#x2715; Cancel</button>
                         </div>
                     </div>
                 </section>

@@ -1,8 +1,7 @@
 const moment = require('moment');
 
-export function removeTripContainer(event) {
-    const tripContainer = event.target.parentNode.parentNode;
-    const tripId = tripContainer.id;
+export function removeTripContainer(tripId) {
+    const tripContainer = document.getElementById(tripId);
     tripContainer.remove();
 
     // update local storage
@@ -49,7 +48,9 @@ export function createTripContainer(tripData) {
 
     const removeButton = document.createElement('button');
     removeButton.innerText = 'Remove Trip';
-    removeButton.setAttribute('onclick', 'Client.removeTripContainer(event)');
+    removeButton.addEventListener('click', () => {
+        Client.removeTripContainer(tripData.id);
+    });
     tripInfoContainer.appendChild(removeButton);
 
     // define trip container and add to trips

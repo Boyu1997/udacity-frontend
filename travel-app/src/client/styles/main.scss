@@ -14,6 +14,11 @@ header {
 main {
     min-height: 82vh;
 
+    button:hover {
+        cursor: pointer;
+        font-weight: bold;
+    }
+
     #main-container {
         margin-left: auto;
         margin-right: auto;

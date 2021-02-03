@@ -23,6 +23,10 @@ window.onload = function() {
     else {
         localStorage.setItem('tripDataSet', JSON.stringify({}));
     }
+
+    document.getElementById('new-trip-button').addEventListener('click', Client.displayNewTripForm);
+    document.getElementById('new-trip-form-submit').addEventListener('click', Client.createNewTrip);
+    document.getElementById('new-trip-form-cancel').addEventListener('click', Client.hideNewTripForm);
 };
 
 export { 
